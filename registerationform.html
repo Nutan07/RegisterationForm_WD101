@@ -1,0 +1,105 @@
+html>
+  <head>
+    <style>
+      form {
+        width: 500px;
+        margin: 0 auto;
+      }
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: lightgray;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head> 
+  <h2><center>Registration Form</center></h2>
+<form id="registration-form">
+  <table>
+    <tr>
+  <td><label for="name">Name:</label></td>
+ <td> <input type="text" id="name" name="name" placeholder="Enter your name" required><br></td>
+</tr>
+
+<tr>
+<td>  <label for="email">Email:</label></td>
+  <td><input type="email" id="email" name="email" placeholder="Enter your email" required><br></td>
+</tr>
+
+<tr>
+  <td><label for="password">Password:</label></td>
+  <td><input type="password" id="password" name="password"  placeholder = "Enter youur password" required><br></td>
+</tr>
+
+<tr>
+  <td><label for="dob">Date of Birth:</label></td>
+ <td> <input type="date" id="dob" name="dob" placeholder="Enter your date of birth" required><br></td>
+</tr>
+
+<tr>
+ <td> <label for="terms">Accept terms and conditions</label></td>
+ <td> <input type="checkbox" id="terms" name="terms" required><br></td>
+</tr>
+
+<tr>
+  <td></td>
+  <td><button type="submit">Submit</button></td>
+</tr>
+  </table>
+</form>
+
+<h2><center>User Details</center></h2>
+<table id="user-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Date of Birth</th>
+      <th>Accepted Terms</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<script type="text/javascript">
+const form = document.getElementById('registration-form');
+const table = document.getElementById('user-table').getElementsByTagName('tbody')[0];
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const dob = document.getElementById('dob').value;
+  const terms = document.getElementById('terms').checked;
+
+  if (terms) {
+    const row = table.insertRow();
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+    const cell4 = row.insertCell(3);
+    const cell5 = row.insertCell(4);
+    cell1.innerHTML = name;
+    cell2.innerHTML = email;
+    cell3.innerHTML = password;
+    cell4.innerHTML = dob;
+    cell5.innerHTML = terms ? 'Yes' : 'No';
+    document.getElementById('registration-form').reset();
+  } else {
+    alert('You must accept the terms and conditions to register.');
+  }
+});
+</script>
